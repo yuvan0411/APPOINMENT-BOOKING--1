@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homeopathy Appointment Booking</title>
+
+  <!-- Modern font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --lavender-1: #c7b8ff;
+      --lavender-2: #b39dff;
+      --lavender-3: #eae4ff;
+      --white: #ffffff;
+      --text-dark: #2f2a45;
+      --text-light: #f7f4ff;
+      --shadow-light: rgba(255, 255, 255, 0.9);
+      --shadow-dark: rgba(155, 137, 209, 0.35);
+      --primary: #8c74ff;
+      --primary-hover: #7a61f0;
+      --error: #d94b7a;
+      --success: #1f9d61;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f4f0ff, #ffffff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: var(--text-dark);
+    }
+
+    .booking-card {
+      width: 100%;
+      max-width: 980px;
+      min-height: 560px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow:
+        12px 12px 30px rgba(176, 160, 224, 0.35),
+        -10px -10px 26px rgba(255, 255, 255, 0.9);
+    }
+
+    /* LEFT SECTION */
+    .left-panel {
+      background: linear-gradient(160deg, var(--lavender-1), var(--lavender-2));
+      color: var(--text-light);
+      padding: 42px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .medical-icon-wrap {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #d8cbff, #ae98ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        inset 8px 8px 16px rgba(126, 105, 194, 0.35),
+        inset -8px -8px 16px rgba(230, 221, 255, 0.55),
+        8px 8px 20px rgba(104, 82, 177, 0.3);
+    }
+
+    .medical-icon {
+      font-size: 58px;
+      filter: drop-shadow(0 4px 6px rgba(69, 44, 143, 0.25));
+    }
+
+    .intro-text {
+      max-width: 370px;
+      line-height: 1.8;
+      font-weight: 300;
+      font-size: 1rem;
+      letter-spacing: 0.2px;
+    }
+
+    /* RIGHT SECTION */
+    .right-panel {
+      background: var(--white);
+      padding: 42px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-wrap {
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .form-wrap h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 1.85rem;
+      color: #4b3f70;
+      font-weight: 600;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      color: #625a80;
+      font-weight: 500;
+    }
+
+    .input-group input {
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 13px 15px;
+      font-size: 0.96rem;
+      background: #f8f6ff;
+      color: var(--text-dark);
+      box-shadow:
+        inset 4px 4px 8px rgba(180, 165, 228, 0.28),
+        inset -4px -4px 8px rgba(255, 255, 255, 0.95);
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .input-group input:focus {
+      background: #ffffff;
+      box-shadow:
+        0 0 0 3px rgba(140, 116, 255, 0.18),
+        inset 4px 4px 8px rgba(180, 165, 228, 0.2),
+        inset -4px -4px 8px rgba(255, 255, 255, 1);
+      transform: translateY(-1px);
+    }
+
+    .book-btn {
+      width: 100%;
+      margin-top: 10px;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #a08bff);
+      cursor: pointer;
+      box-shadow:
+        7px 7px 16px rgba(140, 116, 255, 0.32),
+        -4px -4px 12px rgba(255, 255, 255, 0.9);
+      transition: all 0.25s ease;
+    }
+
+    .book-btn:hover {
+      background: linear-gradient(135deg, var(--primary-hover), #927cff);
+      transform: translateY(-2px);
+      box-shadow:
+        10px 10px 20px rgba(140, 116, 255, 0.35),
+        -6px -6px 14px rgba(255, 255, 255, 0.95);
+    }
+
+    .book-btn:active {
+      transform: translateY(0);
+    }
+
+    .message {
+      margin-top: 14px;
+      font-size: 0.92rem;
+      text-align: center;
+      min-height: 24px;
+    }
+
+    .message.error {
+      color: var(--error);
+    }
+
+    .message.success {
+      color: var(--success);
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .booking-card {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+      }
+
+      .left-panel {
+        min-height: 280px;
+      }
+
+      .right-panel {
+        padding-top: 26px;
+      }
+
+      .form-wrap h2 {
+        font-size: 1.65rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="booking-card">
+    <!-- LEFT SECTION -->
+    <section class="left-panel">
+      <div class="medical-icon-wrap">
+        <!-- Simple healthcare illustration -->
+        <div class="medical-icon">🩺</div>
+      </div>
+
+      <p class="intro-text">
+        Hello, I'm Dr. Yamini Priya, a BHMS intern with a passion for holistic health.
+        I'm here to assist with your health concerns. Let's work together towards your
+        wellness goals.
+      </p>
+    </section>
+
+    <!-- RIGHT SECTION -->
+    <section class="right-panel">
+      <div class="form-wrap">
+        <h2>Book Appointment</h2>
+
+        <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
+        <form id="appointmentForm" action="https://formspree.io/f/xojybgeq" method="POST">
+          <div class="input-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your name" required />
+          </div>
+
+          <div class="input-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required />
+          </div>
+
+          <div class="input-group">
+            <label for="contactNumber">Contact Number</label>
+            <input
+              type="tel"
+              id="contactNumber"
+              name="contactNumber"
+              placeholder="Enter your contact number"
+              required
+            />
+          </div>
+
+          <button class="book-btn" type="submit">Book Now</button>
+          <p id="formMessage" class="message"></p>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById("appointmentForm");
+    const message = document.getElementById("formMessage");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      message.textContent = "";
+      message.className = "message";
+
+      const fullName = document.getElementById("fullName").value.trim();
+      const age = parseInt(document.getElementById("age").value, 10);
+      const contactNumber = document.getElementById("contactNumber").value.trim();
+
+      // Basic validation
+      if (fullName.length < 3) {
+        showError("Please enter a valid full name (min 3 characters).");
+        return;
+      }
+
+      if (isNaN(age) || age < 1 || age > 120) {
+        showError("Please enter a valid age between 1 and 120.");
+        return;
+      }
+
+      // Only digits, allow 10-15 digits for flexibility
+      const phoneRegex = /^\d{10,15}$/;
+      if (!phoneRegex.test(contactNumber)) {
+        showError("Please enter a valid contact number (10 to 15 digits).");
+        return;
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        if (response.ok) {
+          form.reset();
+          message.textContent = "Appointment booked successfully! We will contact you soon.";
+          message.classList.add("success");
+        } else {
+          showError("Something went wrong. Please try again.");
+        }
+      } catch (error) {
+        showError("Network error. Please check your connection and try again.");
+      }
+    });
+
+    function showError(text) {
+      message.textContent = text;
+      message.classList.add("error");
+    }
+  </script>
+</body>
+</html>
